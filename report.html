@@ -12981,10 +12981,61 @@ Naive Predictor: [Accuracy score: 0.2478, F-score: 0.2917]</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong><em>Answer:</em> </strong></p>
-<p>I believe the most appropriate models to solve this problem are Gaussian Naive Bayes, Support Vector Machines (SVC) and the ensemble method Adaboost.</p>
-<p>The <strong>Gaussian Naive Bayes</strong> model has been widely used in the industry for text classification purposes. In particular for classifying and filtering spam emails based on the likelihood of certain words appearing on an spam email as compared to a non-spam email (ref: <a href="https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering">https://en.wikipedia.org/wiki/Naive_Bayes_spam_filtering</a>). The strenght of this model lies in its simplicity inherited from the assumption that all features needed correctly to classify the data are "independent" from each other. This allows for the algorithm to be trained quickly and using less data. Furthermore, even when the underlying independence assumption is broken (i.e. when features have relationships between them), this algorithm still performs very well and is able to classify based on the maximum likelihood of a label given the set of features rather than on the actual probabilities of each feature. On the other hand, Naive Bayes' weakness is that if it encounters a previously unseen feature-label combination (on which it was never trained) it will incorrectly estimate likelyhood as 0 which can cause it to incorrectly classify the label. This particular model could be a good approach to solving the problem as we have a large data set with few features.</p>
-<p><strong>Support Vector Machines (SVC)</strong> have been used in the industry successfully for handwritten digit identification to a level close to human classification error (ref: <a href="http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.89.951&amp;rep=rep1&amp;type=pdfProne">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.89.951&amp;rep=rep1&amp;type=pdfProne</a>). This model is effective in high dimensional spaces and best suited for problems with complex domains where there are clear margins of separation in the data. To correctly classify the data, this model is also capable of defining complex higher order separation planes through custom kernels. One of the weaknesses of this model is that training can be time consuming on large datasets. Also, SVCs can perform poorly and overfit when when the data is very noisy or overlaps too much. While training on our large current dataset may become an issue, the model could be still be a good candidate as there seems to be some features in the data that can more clearly define the income level boundary.</p>
-<p><strong>Adaboost</strong> is a Boosting type Ensemble Learning Method. In the industry, boosting algorithms have been used for the binary classification problem of face detection where the algorithm has to identify wheter a portion of an image is a face or background (ref: <a href="https://en.wikipedia.org/wiki/Boosting_(machine_learning">https://en.wikipedia.org/wiki/Boosting_(machine_learning</a>)). One of the main strenghts of Adaboost is that it is a fast algorithm, agnostic to the classifier and less prone to overfitting. During the iterative training, it continuously gives more weight to missclassified labels to allow the classifier to focus on the harder cases which increases the overall model's performance. On the other hand, noisy data and outliers in the data can negatively impact the performance so data pre processing is important. Furthermore, if a complex model is used as the base classifier, this can lead to overfitting to the training data. In my opinion, this model is a good candidate for the problem as our dataset is large yet clean. Therefore we will be able to perform multiple quick trainining iterations to maximize our overall accuracy on the unseen testing data.</p>
+<h3 id="-Support-Vector-Machines"><strong> Support Vector Machines</strong><a class="anchor-link" href="#-Support-Vector-Machines">&#182;</a></h3><ul>
+<li><strong>applications</strong>:   <ul>
+<li>Rainfall and runoff forecasting with SSA–SVM approach</li>
+</ul>
+</li>
+<li><strong><em>strengths:</em></strong>    <ul>
+<li>Accuracy</li>
+<li>Works well on smaller cleaner datasets</li>
+<li>It can be more efficient because it uses a subset of training points</li>
+</ul>
+</li>
+<li><strong><em>weaknesses:</em></strong><ul>
+<li>Isn’t suited to larger datasets as the training time with SVMs can be high</li>
+<li>Less effective on noisier datasets with overlapping classes   </li>
+</ul>
+</li>
+<li><strong><em>why</em></strong>:<ul>
+<li>Since we don't have a lot of data, we can iterate over all the parameters of the SVM, that makes finding the perfect combination of parameters quite fast.   </li>
+</ul>
+</li>
+</ul>
+<h3 id="Gaussian-Naive-Bayes"><strong>Gaussian Naive Bayes</strong><a class="anchor-link" href="#Gaussian-Naive-Bayes">&#182;</a></h3><ul>
+<li><p><strong><em>applications</em></strong>: Recognizing human facial expression and emotion</p>
+</li>
+<li><p><strong><em>strengths:</em></strong> If the NB conditional independence assumption actually holds, a Naive Bayes classifier will converge quicker than discriminative models like logistic regression, so you need less training data.</p>
+</li>
+<li><p><strong><em>weaknesses:</em></strong>
+Naive Bayes classifier makes a very strong assumption on the shape of your data distribution, i.e. any two features are independent given the output class.
+Data scarcity: for any possible value of a feature, you need to estimate a likelihood value by a frequentist approach. This can result in probabilities going towards 0 or 1, which in turn leads to numerical instabilities and worse results</p>
+</li>
+<li><p><strong><em>Why:</em></strong> Since we don't a lot of data and many features, a learning model that converges fast is the best approach.</p>
+</li>
+</ul>
+<h3 id="Adaboost"><strong>Adaboost</strong><a class="anchor-link" href="#Adaboost">&#182;</a></h3><ul>
+<li><p><strong><em>applications</em></strong>:  used for computer vision, and speech processing...</p>
+</li>
+<li><p><strong><em>strengths:</em></strong></p>
+<ul>
+<li>AdaBoost was designed for binary classification (two output classes) and makes use of decision trees.</li>
+<li>It is best used with weak learners.</li>
+</ul>
+</li>
+<li><p><strong><em>weaknesses:</em></strong></p>
+<ul>
+<li>Need to be careful that the training data is of a high-quality.</li>
+<li>AdaBoost can be sensitive to noisy data and outliers</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong><em>Why:</em></strong> <ul>
+<li>We have dense feature set, so I go with boosting.</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -13907,9 +13958,8 @@ xzxC0eAAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer: </strong></p>
-<p>According to the graph of the three models. Between the two training and testing data, both SVC and Adaboost models have higher accuracy than the Gaussian model.
-Between the SVC and Adaboost models, the Ada model has the highest accuracy in both training and testing data.</p>
-<p>So I chose the <strong>Adaboost</strong> model.</p>
+<p>In my opinion, the most appropriate solution to this problem would be achieved using the Adaboost ensemble model. As it can be observed from the plots, in comparison to SVC, both the Adaboost and the GaussianNB algorithms are capable of both training on the entire data set and quickly performing predictions. However, at all training set sizes, the training and testing accuracies achieved with Adaboost are significantly higher than those obtained when using the simpler GuassianNB algorithm and as high as those ahieved by the more complex SVC model. Also, In terms of the Fbeta score, Adaboost slightly outperforms SVC at all training set sizes and significately outperforms GaussianNB.</p>
+<p>When weighing all of these attributes, we can conclude that Adaboost is best suited for this problem. We will be able to fully utilize the entire dataset to maximize the performance in the unseen data without compromising on training and testing the speeds. Also, since we are more interested in maximizing the number of accurately classified people that make more than 50K, this model, which has the highest accuracy, seems to be the most appropriate.</p>
 
 </div>
 </div>
